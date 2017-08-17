@@ -5,13 +5,13 @@
     </div>
   </div>
 </div>
-<div  class="col-xs-4" >
+<div  class="col-xs-4" *ngFor="let item of produces">
   <div class="thumbnail">
-    <img src="http://placehold.it/320x150" alt="">
+    <img [src]="item?.imgUrl" alt="">
     <div class="caption">
-      <h4 class="pull-right">400</h4>
-      <h4><a routerLink="/produceDetail">xx</a></h4>
-      <p>xxxx</p>
+      <h4 class="pull-right">{{item?.price}}</h4>
+      <h4><a routerLink="/produceDetail/{{item.id}}">{{item?.title}}</a></h4>
+      <p>{{item?.desc}}</p>
     </div>
     <div>
       <app-stars></app-stars>

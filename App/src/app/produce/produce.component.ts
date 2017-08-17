@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService, Produce} from "../service/api.service";
 
 @Component({
   selector: 'app-produce',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProduceComponent implements OnInit {
 
-  constructor() { }
+  public produces: Produce[];
+
+  //构造注册ApiService
+  constructor(public produce: ApiService) { }
 
   ngOnInit() {
+    this.produces = this.produce.getProduces();
   }
 
 }
