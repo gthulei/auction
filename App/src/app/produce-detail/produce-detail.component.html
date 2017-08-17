@@ -2,21 +2,21 @@
   <img src="http://placeHold.it/820x230" alt="">
 
   <div >
-    <h4 class="pull-right">price</h4>
-    <h4>title</h4>
-    <p>desc</p>
+    <h4 class="pull-right" style="color: red">{{result.price}}元</h4>
+    <h4>{{result.title}}</h4>
+    <p>{{result.desc}}</p>
   </div>
 
 
   <div>
-    <p class="pull-right">5</p>
+    <p class="pull-right">1</p>
     <p>
-      <app-stars></app-stars>
+      <app-stars [stars]="result.rating"></app-stars>
     </p>
   </div>
   <div class="well">
-    <button class="btn btn-success"></button>
-    <div [hidden]="true">
+    <button class="btn btn-success" (click)="flag=!flag">{{flag?'关闭评论':'发表评论'}}</button>
+    <div [hidden]="!flag">
       <div>
         <app-stars></app-stars>
 
