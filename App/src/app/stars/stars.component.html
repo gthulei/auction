@@ -1,8 +1,4 @@
-<p>
-  <span class="glyphicon glyphicon-star"></span>
-  <span class="glyphicon glyphicon-star"></span>
-  <span class="glyphicon glyphicon-star"></span>
-  <span class="glyphicon glyphicon-star glyphicon-star-empty"></span>
-  <span class="glyphicon glyphicon-star glyphicon-star-empty"></span>
-  <span>3</span>
-</p>
+<div>
+  <span class="glyphicon glyphicon-star" *ngFor="let item of starsArry" [class.glyphicon-star-empty] = "item"></span>
+  <span>{{stars}}</span>
+</div>

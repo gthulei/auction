@@ -18,7 +18,7 @@ import {ApiService} from "./service/api.service";
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'produceDetail', component: ProduceDetailComponent },
+  { path: 'produceDetail/:id', component: ProduceDetailComponent },
   { path: '**', component: Error404Component },
 ];
 

@@ -9,12 +9,12 @@
   <div class="thumbnail">
     <img [src]="item?.imgUrl" alt="">
     <div class="caption">
-      <h4 class="pull-right">{{item?.price}}</h4>
+      <h4 class="pull-right" style="color: red">{{item?.price}}元</h4>
       <h4><a routerLink="/produceDetail/{{item.id}}">{{item?.title}}</a></h4>
       <p>{{item?.desc}}</p>
     </div>
     <div>
-      <app-stars></app-stars>
+      <app-stars [stars]="item.rating"></app-stars>
     </div>
   </div>
 </div>
