@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { ProduceDetailComponent } from './produce-detail/produce-detail.component';
 import {RouterModule, Routes} from "@angular/router";
 import { Error404Component } from './error404/error404.component';
+import {ApiService} from "./service/api.service";
 
 // 路由配置
 const appRoutes: Routes = [
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
