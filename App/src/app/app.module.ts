@@ -9,6 +9,17 @@ import { ProduceComponent } from './produce/produce.component';
 import { StarsComponent } from './stars/stars.component';
 import { BannerComponent } from './banner/banner.component';
 import { SearchComponent } from './search/search.component';
+import { ProduceDetailComponent } from './produce-detail/produce-detail.component';
+import {RouterModule, Routes} from "@angular/router";
+import { Error404Component } from './error404/error404.component';
+
+// 路由配置
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'produceDetail', component: ProduceDetailComponent },
+  { path: '**', component: Error404Component },
+];
 
 @NgModule({
   declarations: [
@@ -19,10 +30,13 @@ import { SearchComponent } from './search/search.component';
     ProduceComponent,
     StarsComponent,
     BannerComponent,
-    SearchComponent
+    SearchComponent,
+    ProduceDetailComponent,
+    Error404Component
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
