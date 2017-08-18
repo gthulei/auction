@@ -10,6 +10,8 @@ export class ProduceComponent implements OnInit {
 
   public produces: Produce[];
 
+  public search: string = '';
+
   //构造注册ApiService
   constructor(public produce: ApiService) { }
 

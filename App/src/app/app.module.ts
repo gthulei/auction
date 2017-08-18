@@ -14,6 +14,7 @@ import { ProduceDetailComponent } from './produce-detail/produce-detail.componen
 import {RouterModule, Routes} from "@angular/router";
 import { Error404Component } from './error404/error404.component';
 import {ApiService} from "./service/api.service";
+import { SearchFilterPipe } from './pipe/search-filter.pipe';
 
 // 路由配置
 const appRoutes: Routes = [
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     BannerComponent,
     SearchComponent,
     ProduceDetailComponent,
-    Error404Component
+    Error404Component,
+    SearchFilterPipe,
   ],
   imports: [
     FormsModule,
