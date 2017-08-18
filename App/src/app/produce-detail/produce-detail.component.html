@@ -9,7 +9,7 @@
 
 
   <div>
-    <p class="pull-right">1</p>
+    <p class="pull-right">{{commentaries.length}}人</p>
     <p>
       <app-stars [stars]="result.rating"></app-stars>
     </p>
@@ -18,27 +18,26 @@
     <button class="btn btn-success" (click)="flag=!flag">{{flag?'关闭评论':'发表评论'}}</button>
     <div [hidden]="!flag">
       <div>
-        <app-stars></app-stars>
+        <app-stars [(stars)]="starsDefault" [readOnly]="true"></app-stars>
 
       </div>
       <div>
-        <textarea></textarea>
+        <textarea [(ngModel)]="newComment" id=""></textarea>
       </div>
       <div>
-        <button class="btn">提交</button>
+        <button class="btn" (click)="addSubmit()">提交</button>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngFor="let item of commentaries">
       <hr>
       <div class="col-xs-12">
-        <app-stars></app-stars>
-        <span>user</span>
-        <span class="pull-right">xxx</span>
+        <app-stars [stars]="item.rating"></app-stars>
+        <span>{{item.username}}</span>
+        <span class="pull-right">{{item.date | date:"yyyy-hh-ss"}}</span>
         <p></p>
-        <p>xxx</p>
+        <p>{{item.desc}}</p>
       </div>
-
     </div>
   </div>
 </div>

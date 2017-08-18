@@ -12,7 +12,11 @@ export class ApiService {
     new Produce(6,"苹果8",8000,2,"苹果9/8.8折","http://placehold.it/320x150"),
   ];
 
-  public produce: Produce;
+  public commentaries: Commentaries[] = [
+    new Commentaries(1,"hulei",5,"很好!",new Date),
+    new Commentaries(1,"hulei",4,"很好!",new Date),
+    new Commentaries(2,"hulei",5,"很好!!",new Date)
+  ];
 
   constructor() { }
 
@@ -25,6 +29,12 @@ export class ApiService {
   getProducesById(id: number) :Produce {
     // 查找数值,并返回一个实例
     return this.produces.find((produce) => produce.id == id);
+  }
+
+  //论评
+  addProduce(id: number) :Commentaries[] {
+    // 查找数值,返回一个数组
+   return this.commentaries.filter((o) => o.id == id);
   }
 
 
@@ -42,14 +52,13 @@ export class Produce {
 ) {}
 }
 
-export class ProduceDesc {
+export class Commentaries {
 
   constructor(
     public id: number,
-    public title: string,
-    public price: number,
+    public username: string,
     public rating: number,
     public desc: string,
-    public imgUrl: string
+    public date: Date
   ) {}
 }
