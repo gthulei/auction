@@ -46,6 +46,12 @@ export class ProduceDetailComponent implements OnInit {
     let comment = new Commentaries(this.prodId,"hulei",this.starsDefault,this.newComment,new Date);
     // 数组追加
     this.commentaries.unshift(comment);
+
+    // 数组求和
+    let sum = this.commentaries.reduce((n,o) => n+o.rating,0);
+
+    this.result.rating = sum / this.commentaries.length;
+
     this.flag = false;
   }
 

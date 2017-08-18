@@ -1,5 +1,5 @@
 <div>
   <span class="glyphicon glyphicon-star" *ngFor="let item of starsArry; let i=index"
         [class.glyphicon-star-empty] = "item" (click)="addStars(i)"></span>
-  <span>{{stars}}星</span>
+  <span>{{stars | number:'1.0-1'}}星</span>
 </div>
