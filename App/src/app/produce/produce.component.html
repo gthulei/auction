@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="form-group">
-      <input type="text" class="form-control " placeholder="请输入商品名称" [(ngModel)]="search">
+      <input type="text" class="form-control " placeholder="请输入商品名称" [formControl]="search">
     </div>
   </div>
 </div>
-<div  class="col-xs-4" *ngFor="let item of produces">
+<div  class="col-xs-4" *ngFor="let item of produces | searchFilter:'title':filterField">
   <div class="thumbnail">
     <img [src]="item?.imgUrl" alt="">
     <div class="caption">
