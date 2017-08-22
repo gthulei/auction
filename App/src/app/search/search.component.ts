@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ApiService} from "../service/api.service";
 
 @Component({
   selector: 'app-search',
@@ -7,7 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  public formModel : FormGroup;
+
+  public goodsType: string[];
+
+  constructor(apiService: ApiService) {
+
+   this.goodsType = apiService.getGoodsType();
+    // 模型驱动响应式
+    let fb = new FormBuilder();
+    //自定义验证,页面formControlName绑定
+    this.formModel = fb.group({
+      "title":["",Validators.minLength(3)],
+      "price":[null,this.isNumber],
+      "type":[-1]
+    })
+  }
+
+  // 自定义验证
+  isNumber(v:FormGroup) :any {
+    if(!v.value){
+      return false
+    }
+    if(/^\d+\.?(\d{1,2})?$/.test(v.value)){
+      return false;
+    }
+    return {isNumberPrice:true};
+  }
 
   ngOnInit() {
   }

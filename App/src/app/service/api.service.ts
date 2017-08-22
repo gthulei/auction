@@ -37,6 +37,10 @@ export class ApiService {
    return this.commentaries.filter((o) => o.id == id);
   }
 
+  getGoodsType(): string[]{
+    return ['JAVA','C++','JS'];
+  }
+
 
 }
 
