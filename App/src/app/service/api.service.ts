@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Http} from "@angular/http";
 
 @Injectable()
 export class ApiService {
@@ -18,7 +19,8 @@ export class ApiService {
     new Commentaries(2,"hulei",5,"很好!!",new Date)
   ];
 
-  constructor() { }
+  constructor(private http: Http) {
+  }
 
   //商品信息
   getProduces() :Produce[] {

@@ -15,6 +15,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { Error404Component } from './error404/error404.component';
 import {ApiService} from "./service/api.service";
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
+import {HttpModule} from "@angular/http";
 
 // 路由配置
 const appRoutes: Routes = [
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [ApiService],
