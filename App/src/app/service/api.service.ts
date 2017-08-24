@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
@@ -25,7 +25,10 @@ export class ApiService {
 
   //商品信息
   getProduces() :Observable <any> {
-    return this.http.get('/api/produces.json').map(res => res.json());
+    // 请求头信息
+    let header: Headers = new Headers();
+    header.append("Authorization","apikey f756d3e702e341a1af8044b0910dcffb")
+    return this.http.get('/api/produces.json',{headers: header}).map(res => res.json());
   }
 
   //商品信息详细
