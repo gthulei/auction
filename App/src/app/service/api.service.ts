@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ApiService {
@@ -23,8 +24,8 @@ export class ApiService {
   }
 
   //商品信息
-  getProduces() :Produce[] {
-    return this.produces;
+  getProduces() :Observable <any> {
+    return this.http.get('/api/produces.json').map(res => res.json());
   }
 
   //商品信息详细

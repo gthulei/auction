@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService, Produce} from "../service/api.service";
 import {FormControl} from "@angular/forms";
 import 'rxjs/Rx';
+import {Observable} from "rxjs/Observable";
 @Component({
   selector: 'app-produce',
   templateUrl: './produce.component.html',
@@ -9,7 +10,7 @@ import 'rxjs/Rx';
 })
 export class ProduceComponent implements OnInit {
 
-  public produces: Produce[];
+  public produces: Observable <Produce[]>;
 
   public filterField: string;
 
@@ -25,7 +26,14 @@ export class ProduceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.produces = this.produce.getProduces();
+    // 订阅流
+   this.produce.getProduces().subscribe(res =>{
+     if(res.succeed){
+       this.produces = res.data;
+     }else {
+       alert(res.errorMessage);
+     }
+   })
   }
 
 }
