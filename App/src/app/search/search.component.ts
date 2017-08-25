@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
     this.formModel = fb.group({
       "title":["",Validators.minLength(3)],
       "price":[null,this.isNumber],
-      "type":[-1]
+      "type":[null]
     })
   }
 
