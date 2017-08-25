@@ -1,4 +1,4 @@
-<form id="from" [formGroup] = "formModel">
+<form id="from" [formGroup] = "formModel" (ngSubmit)= "onSearch()">
   <div class="form-group" [class.has-error]="formModel.hasError('minlength','title')">
     <label for="productTitle">商品名称:</label>
     <input class="form-control" formControlName="title" type="text" id="productTitle" placeholder="商品名称">

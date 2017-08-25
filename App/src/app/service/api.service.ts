@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
-import {Http, Headers} from "@angular/http";
+import {EventEmitter, Injectable} from '@angular/core';
+import {Http, Headers, URLSearchParams} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-
 @Injectable()
 export class ApiService {
+
+  // 中间人
+  searchEvent:EventEmitter<SearchProducesParameter> = new EventEmitter();
 
   public produces: Produce[] = [
     new Produce(1,"苹果4",3000,2,"苹果4/8.8折","http://placehold.it/320x150"),
@@ -24,7 +26,7 @@ export class ApiService {
   }
 
   //商品信息
-  getProduces() :Observable <any> {
+  getProduces() :Observable <Produce[]> {
     // 请求头信息
     let header: Headers = new Headers();
     header.append("Authorization","apikey f756d3e702e341a1af8044b0910dcffb")
@@ -44,9 +46,25 @@ export class ApiService {
   }
 
   getGoodsType(): string[]{
-    return ['JAVA','C++','JS'];
+    return ['电子产品','书籍','白酒'];
   }
 
+  // 搜索
+  searchProduces(params: SearchProducesParameter) :Observable <Produce[]> {
+    return this.http.get('/api/produces.json',{search:this.encodeParams(params)}).map(res => res.json());
+  }
+
+  private encodeParams(params: SearchProducesParameter) {
+    //第一个表示会把所有的参数的key值拿出来变成一个数组集合
+    //第二个表示过滤传入参数中没有值的对象,filter具体的方式,参考百度
+    //第三个 首先new URLSearchParams并把sum类型定义为此,sum中有一个方法,append
+    return Object.keys(params)
+      .filter(key => params[key])
+      .reduce((sum:URLSearchParams,key:string) =>{
+        sum.append(key,params[key]);
+        return sum;
+      },new URLSearchParams);
+  }
 
 }
 
@@ -71,4 +89,12 @@ export class Commentaries {
     public desc: string,
     public date: Date
   ) {}
+}
+
+export class SearchProducesParameter {
+  constructor(
+    public title: string,
+    public price: number,
+    public type: number,
+  ){}
 }

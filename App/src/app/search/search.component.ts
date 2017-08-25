@@ -12,8 +12,8 @@ export class SearchComponent implements OnInit {
   public formModel : FormGroup;
 
   public goodsType: string[];
-
-  constructor(apiService: ApiService) {
+  // 构造参数默认为private,外部无法访问
+  constructor(public apiService: ApiService) {
 
    this.goodsType = apiService.getGoodsType();
     // 模型驱动响应式
@@ -38,6 +38,13 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onSearch() :void {
+    if(this.formModel.valid){
+      // 发射参数
+      this.apiService.searchEvent.emit(this.formModel.value);
+    }
   }
 
 }

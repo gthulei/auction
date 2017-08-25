@@ -26,14 +26,21 @@ export class ProduceComponent implements OnInit {
   }
 
   ngOnInit() {
-    // 订阅流
-   this.produce.getProduces().subscribe(res =>{
-     if(res.succeed){
-       this.produces = res.data;
-     }else {
-       alert(res.errorMessage);
-     }
-   })
+    // 异步管道async自动渲染不需要手动订阅流
+    this.produces = this.produce.getProduces();
+
+    // 订阅触发搜索
+    this.produce.searchEvent.subscribe(
+      params => this.produces = this.produce.searchProduces(params)
+    )
+    // 手动订阅流
+   // this.produce.getProduces().subscribe(res =>{
+   //   if(res.succeed){
+   //     this.produces = res.data;
+   //   }else {
+   //     alert(res.errorMessage);
+   //   }
+   // })
   }
 
 }
